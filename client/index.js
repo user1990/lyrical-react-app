@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // React router
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 // GraphQL Apollo
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
