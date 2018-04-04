@@ -1,3 +1,4 @@
+/* eslint-disable */
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
@@ -15,10 +16,10 @@ const webpack = require('webpack');
 const webpackConfig = require('../webpack.config');
 
 const app = express();
+dotenv.config();
 
 // MongoDb connection
-const MONGODB_URL =
-  'mongodb://user1990:lyrical@ds131989.mlab.com:31989/lyrical';
+const MONGODB_URL = process.env.MONGODB_URL;
 if (!MONGODB_URL) {
   throw new Error('You must provide a MongoDB URL');
 }
