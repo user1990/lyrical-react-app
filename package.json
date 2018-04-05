@@ -11,8 +11,7 @@
     "dev": "nodemon server/server.js --ignore webpack-dev-server --mode development",
     "prod": "webpack --mode production",
     "build:prod": "webpack -p --env production",
-    "start": "node server/server.js",
-    "heroku-postbuild": "npm run build:prod"
+    "start": "node server/server.js"
   },
   "author": "user1990",
   "license": "ISC",
