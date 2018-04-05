@@ -6,7 +6,7 @@ import SongCreate from './Song/SongCreate';
 import SongDetail from './Song/SongDetail';
 
 const App = () => (
-  <div>
+  <div className="container">
     <Switch>
       <Route exact path="/" component={SongList} />
       <Route path="/songs/new" component={SongCreate} />

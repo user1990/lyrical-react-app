@@ -1,24 +1,53 @@
+body {
+  background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent);
+  width: 98vw;
+  height: 99vh;
+  position: relative;
+}
+
+.container {
+  margin-top: 10rem;
+  border: 1px solid #469a06;
+  padding: 2rem;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.songs-list {
+  margin-top: 0;
+}
+
 .collection-item {
   display: flex;
   justify-content: space-between;
 }
 
-.collection-item-remove {
-  border: none;
-  background: none;
-}
-
-.collection-item-remove:focus,
-.collection-item-remove:active {
-  background: none;
-}
-
 .material-icons {
   cursor: pointer;
   margin-right: 5px;
+  outline: none;
+  background: none;
+}
+
+.material-icons:active,
+.material-icons:focus {
+  background: none;
 }
 
 .vote-box {
   display: flex;
   align-items: center;
+  background: none;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fff;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #fff;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #fff;
 }

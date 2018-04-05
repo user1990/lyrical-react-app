@@ -1,12 +1,17 @@
 {
-  "name": "server",
+  "name": "lyrical-graphql",
   "version": "1.0.0",
+  "engines": {
+    "node": "9.9.0",
+    "npm": "5.8.0"
+  },
   "description": "Lyrical graphQL server side",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server/server.js --ignore webpack-dev-server --mode development",
-    "start": "webpack-dev-server --mode development",
-    "prod": "webpack --mode production"
+    "prod": "webpack --mode production",
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run prod"
   },
   "author": "user1990",
   "license": "ISC",

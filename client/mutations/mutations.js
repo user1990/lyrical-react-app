@@ -18,7 +18,20 @@ export const deleteSong = gql`
 `;
 
 // Lyrics
-export const likeLyricMutation = gql`
+export const addLyricToSong = gql`
+  mutation AddLyricToSong($content: String, $songId: ID) {
+    addLyricToSong(content: $content, songId: $songId) {
+      id
+      lyrics {
+        id
+        content
+        likes
+      }
+    }
+  }
+`;
+
+export const likeLyric = gql`
   mutation LikeLyric($id: ID) {
     likeLyric(id: $id) {
       id
@@ -27,7 +40,7 @@ export const likeLyricMutation = gql`
   }
 `;
 
-export const deleteLyricMutation = gql`
+export const deleteLyric = gql`
   mutation DeleteLyric($id: ID!) {
     deleteLyric(id: $id) {
       id

@@ -9,7 +9,7 @@ import { deleteSong } from '../../mutations/mutations';
 import { fetchSongsList } from '../../queries/queries';
 
 class SongList extends Component {
-  handleDeleteSong = id => {
+  handleSongDelete = id => {
     this.props
       .mutate({ variables: { id } })
       .then(() => this.props.data.refetch());
@@ -21,12 +21,15 @@ class SongList extends Component {
     return songs.map(({ id, title }) => (
       <li key={id} className="collection-item">
         <Link to={`/songs/${id}`}>{title}</Link>
-        <button
-          className="collection-item-remove"
-          onClick={() => this.handleDeleteSong(id)}
+        <i
+          role="button"
+          tabIndex="0"
+          onClick={() => this.handleSongDelete(id)}
+          onKeyPress={() => this.handleSongDelete(id)}
+          className="material-icons"
         >
-          <i className="material-icons">delete</i>
-        </button>
+          delete
+        </i>
       </li>
     ));
   }
@@ -38,6 +41,7 @@ class SongList extends Component {
 
     return (
       <div>
+        <h3 className="songs-list">Songs List</h3>
         <ul className="collection">{this.renderSongs()}</ul>
         <Link to="/songs/new" className="btn-floating btn-large red right">
           <i className="material-icons">add</i>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { addLyricToSong } from '../../mutations/mutations';
 
 class LyricCreate extends Component {
   state = {
@@ -47,17 +47,4 @@ LyricCreate.propTypes = {
   songId: PropTypes.string.isRequired,
 };
 
-const mutation = gql`
-  mutation AddLyricToSong($content: String, $songId: ID) {
-    addLyricToSong(content: $content, songId: $songId) {
-      id
-      lyrics {
-        id
-        content
-        likes
-      }
-    }
-  }
-`;
-
-export default graphql(mutation)(LyricCreate);
+export default graphql(addLyricToSong)(LyricCreate);

@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
+// Mutation
+import { likeLyric } from '../../mutations/mutations';
 
 class LyricList extends Component {
-  handleOnLike = id => {
-    console.log(id);
+  handleOnLike = (id, likes) => {
+    this.props.mutate({
+      variables: { id },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        likeLyric: {
+          id,
+          __typename: 'LyricType',
+          likes: likes + 1,
+        },
+      },
+    });
   };
 
   renderLyrics() {
     const { lyrics } = this.props;
 
-    return lyrics.map(({ id, content }) => (
-      <li key={id} className="collection-name">
+    return lyrics.map(({ id, content, likes }) => (
+      <li key={id} className="collection-item">
         {content}
-        <button onClick={() => this.handleOnLike(id)}>
-          <i className="material-icons">thumb_up</i>
-        </button>
+        <div className="vote-box">
+          <i
+            role="button"
+            tabIndex="0"
+            className="material-icons"
+            onClick={() => this.handleOnLike(id, likes)}
+            onKeyPress={() => this.handleOnLike(id, likes)}
+          >
+            thumb_up
+          </i>
+          {likes}
+        </div>
       </li>
     ));
   }
@@ -26,7 +48,8 @@ class LyricList extends Component {
 }
 
 LyricList.propTypes = {
+  mutate: PropTypes.func.isRequired,
   lyrics: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default LyricList;
+export default graphql(likeLyric)(LyricList);
