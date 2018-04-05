@@ -12,7 +12,7 @@ import App from './components/App';
 import './styles/styles.css';
 
 const client = new ApolloClient({
-  // dataIdFromObject: o => o.id,
+  dataIdFromObject: o => o.id,
 });
 
 const Root = () => (

@@ -3,17 +3,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import query from '../../queries/fetchSongs';
+// Queries
+import { fetchSongsList } from '../../queries/queries';
+// Mutations
+import { addSong } from '../../mutations/mutations';
 
 class SongCreate extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      title: '',
-    };
-  }
+  state = {
+    title: '',
+  };
 
   handleOnChange = e => {
     this.setState({ title: e.target.value });
@@ -25,7 +23,7 @@ class SongCreate extends Component {
     this.props
       .mutate({
         variables: { title: this.state.title },
-        refetchQueries: [{ query }],
+        refetchQueries: [{ query: fetchSongsList }],
       })
       .then(() => this.props.history.push('/'));
   };
@@ -54,12 +52,4 @@ SongCreate.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-const mutation = gql`
-  mutation AddSong($title: String) {
-    addSong(title: $title) {
-      title
-    }
-  }
-`;
-
-export default graphql(mutation)(withRouter(SongCreate));
+export default graphql(addSong)(withRouter(SongCreate));
