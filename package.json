@@ -10,8 +10,9 @@
   "scripts": {
     "dev": "nodemon server/server.js --ignore webpack-dev-server --mode development",
     "prod": "webpack --mode production",
+    "build:prod": "webpack -p --env production",
     "start": "node server/server.js",
-    "heroku-postbuild": "npm run prod"
+    "heroku-postbuild": "npm run build:prod"
   },
   "author": "user1990",
   "license": "ISC",
